@@ -23,9 +23,9 @@
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 m-t-3">
                 <div class="card">
                     <div class="card-block">
-                        <a href="/" class="image-link m-a-2" style="display: block;text-align: center;">
+                      <!--   <a href="/" class="image-link m-a-2" style="display: block;text-align: center;">
                             <img style="width: 100px;" src="" alt="Our Logo">
-                        </a>
+                        </a> -->
                             <div class="p-a-1">
                                 <form method="post" accept-charset="utf-8" action="/register" novalidate>
                                    <!--  <div style="display:none;">
@@ -33,16 +33,20 @@
                                         <input type="hidden" name="_csrfToken" class="form-control">
                                     </div> -->
                                     <div class="form-group email">
-                                        <label for="username">Email</label>
-                                        <input type="email" name="username" placeholder="Email" tabindex="1" class="form-control form-control-lg" id="username">
-                                    </div>            
+                                        <label for="useremail">Email</label>
+                                        <input type="email" name="useremail" placeholder="Email" tabindex="1" class="form-control form-control-lg" id="useremail">
+                                    </div>
+                                    <div class="form-group username">
+                                        <label for="username">Username</label>
+                                        <input type="username" name="username" placeholder="Username" tabindex="2" class="form-control form-control-lg" id="username">
+                                    </div>           
                                     <div class="form-group password">
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" placeholder="Password" tabindex="2" class="form-control form-control-lg" id="password">
+                                        <input type="password" name="password" placeholder="Password" tabindex="3" class="form-control form-control-lg" id="password">
                                     </div>
                                     <div class="form-group repassword">
                                         <label for="password">Repassword</label>
-                                        <input type="password" name="repassword" placeholder="Repassword" tabindex="3" class="form-control form-control-lg" id="repassword">
+                                        <input type="password" name="repassword" placeholder="Repassword" tabindex="4" class="form-control form-control-lg" id="repassword">
                                     </div>                    
                                   
                                     </div>
