@@ -16,6 +16,11 @@
 		<s:submit value="注册" name = 'test'></s:submit>
 	</s:form>
 	
+	<s:form action="findBook">
+		<s:textfield name="book.bookName" label="书名"></s:textfield>
+		<s:submit value="查找" name = 'test'></s:submit>
+	</s:form>
+	
 	<!-- enctype="multipart/form-data"不对字符编码。在使用包含文件上传控件的表单时，必须使用该值。 -->
 	<form action="file/upLoad" method="post" enctype="multipart/form-data">
 		<input name="upload" type="file">

@@ -45,6 +45,7 @@
 			<list>
 				<value>com/LMS/ssh/beans/User.hbm.xml</value>
 				<value>com/LMS/ssh/beans/registerMail.hbm.xml</value>
+				<value>com/LMS/ssh/beans/Book.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -61,24 +62,46 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<!--用户注册数据类 -->
+	<!--数据类 -->
 	<bean id="userDao" class="com.LMS.ssh.daoImpl.UserDaoImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	<bean id="bookDao" class="com.LMS.ssh.daoImpl.BookDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	
-	<!--用户注册业务逻辑类 -->
+	<!--业务逻辑类 -->
 	<bean id="userManager" class="com.LMS.ssh.serviceImpl.UserManagerImpl">
 		<property name="dao">
 			<ref bean="userDao" />
 		</property>
 	</bean>
+	<bean id="bookManager" class="com.LMS.ssh.serviceImpl.BookManagerImpl">
+		<property name="dao">
+			<ref bean="bookDao" />
+		</property>
+	</bean>
 
-	<!-- 用户注册的Action -->
+	<!-- Action -->
 	<bean id="regAction" class="com.LMS.ssh.action.RegisterAction">
 		<property name="userManager">
 			<ref bean="userManager" />
+		</property>
+	</bean>
+	
+	<bean id="loginAction" class="com.LMS.ssh.action.LoginAction">
+		<property name="userManager">
+			<ref bean="userManager" />
+		</property>
+	</bean>
+	
+	<bean id="findBookAction" class="com.LMS.ssh.action.findBookAction">
+		<property name="bookManager">
+			<ref bean="bookManager" />
 		</property>
 	</bean>
 	

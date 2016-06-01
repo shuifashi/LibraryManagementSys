@@ -28,18 +28,18 @@
                             <img style="width: 100px;" src="" alt="Our Logo">
                         </a>
                             <div class="p-a-1">
-                                <form method="post" accept-charset="utf-8" action="Register" novalidate>
+                                <form method="post" accept-charset="utf-8" action="login" novalidate>
                                    <!--  <div style="display:none;">
                                         <input type="hidden" name="_method" value="POST" class="form-control">
                                         <input type="hidden" name="_csrfToken" class="form-control">
                                     </div> -->
                                     <div class="form-group email">
-                                        <label for="username">Email</label>
-                                        <input type="email" name="username" placeholder="Email" tabindex="1" class="form-control form-control-lg" id="username">
+                                        <label for="username">UserID</label>
+                                        <input type="username" name="user.userId" placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="username">
                                     </div>            
                                     <div class="form-group password">
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" placeholder="Password" tabindex="2" class="form-control form-control-lg" id="password">
+                                        <input type="password" name="user.password" placeholder="Password" tabindex="2" class="form-control form-control-lg" id="password">
                                     </div>                    
                                     <a href="/users/reset_password" tabindex="4" class="pull-xs-right">Forgot password?</a>
                                     
@@ -62,7 +62,7 @@
                             </div>
                         <div class="text-xs-center m-a-1">
                             <small>Don't have an account?</small>
-                            <p class="small"><a href="/" tabindex="5" class="xs-padding-right-small">Create Your Account</a> or <a href="/users/work_on_projects" tabindex="5" class="xs-padding-left-small">Just Have a Look</a></p>
+                            <p class="small"><a href="/LibraryManagementSys/WebPage/register/register.jsp" tabindex="5" class="xs-padding-right-small">Create Your Account</a> or <a href="/users/work_on_projects" tabindex="5" class="xs-padding-left-small">Just Have a Look</a></p>
                         </div>
                     </div>
                 </div>

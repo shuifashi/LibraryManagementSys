@@ -40,6 +40,9 @@
 	<listener>
   		<listener-class>mail.NFDFlightDataTaskListener</listener-class>
  	</listener>
+ 	<listener>
+  		<listener-class>mail.registerTaskListener</listener-class>
+ 	</listener>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

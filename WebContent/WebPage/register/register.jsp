@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -34,8 +37,9 @@
                                     </div> -->
                                     <div class="form-group userid">
                                         <label for="userId">UserId</label>
-                                        <input type="userId" name="user.userId" placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="usernId">
-                                    </div>   
+                                        <input type="userId" name="user.userId" placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="usernId">   
+                                        <small><%if(request.getAttribute("status")!= null) {out.print(request.getAttribute("status"));} %></small>                                
+                                    </div> 
                                     <div class="form-group email">
                                         <label for="useremail">Email</label>
                                         <input type="email" name="user.email" placeholder="Email" tabindex="2" class="form-control form-control-lg" id="useremail">
@@ -66,7 +70,7 @@
                             </div>
                         <div class="text-xs-center m-a-1">
                             <small>Already have an account?</small>
-                            <p class="small"><a href="/" tabindex="5" class="xs-padding-right-small">Login in</a> or <a href="/users/work_on_projects" tabindex="5" class="xs-padding-left-small">Just Have a Look</a></p>
+                            <p class="small"><a href="/LibraryManagementSys/WebPage/login/login.jsp" tabindex="5" class="xs-padding-right-small">Login in</a> or <a href="/users/work_on_projects" tabindex="5" class="xs-padding-left-small">Just Have a Look</a></p>
                         </div>
                     </div>
                 </div>

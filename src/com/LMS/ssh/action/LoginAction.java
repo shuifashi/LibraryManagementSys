@@ -1,12 +1,13 @@
 package com.LMS.ssh.action;
 
+import org.hibernate.HibernateException;
+
 import com.LMS.ssh.forms.UserForm;
 import com.LMS.ssh.service.UserManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class RegisterAction extends ActionSupport {
-
+public class LoginAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	private UserForm user;
@@ -27,16 +28,14 @@ public class RegisterAction extends ActionSupport {
 		this.userManager = userManager;
 	}
 
-	public String execute() {
-		try {
-			userManager.regUser(user);
+	public String execute() throws HibernateException, InterruptedException {
+		if(userManager.loginUser(user) == true) {
+			ActionContext.getContext().getSession().put("name", user.getUserId());
+			ActionContext.getContext().put("name",user.getUserId());
 			return SUCCESS;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			ActionContext.getContext().put("status","UserId has been registered!");
+		} else {
 			return ERROR;
 		}
-	}
 
+	}
 }

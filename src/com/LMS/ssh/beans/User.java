@@ -2,18 +2,18 @@ package com.LMS.ssh.beans;
 
 public class User {
 
-	private int userId;
+	private int UserId;
 	private String username;
 	private String password;
 	private String email;
 	private int flag; //0允许借书，1不允许借书
 
 	public int getUserId() {
-		return userId;
+		return UserId;
 	}
 
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.UserId = userId;
 	}
 
 	public String getUsername() {

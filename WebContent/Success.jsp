@@ -10,6 +10,6 @@
 <body>
 	<h1>Congratulations! Successful!</h1>
 	<h1><s:textfield name="#name" /></h1>
-	<h1><%= session.getAttribute("name") %></h1>
+	<h1><% if(session.getAttribute("name")!= null) {out.print(session.getAttribute("name"));} %></h1>
 </body>
 </html>
