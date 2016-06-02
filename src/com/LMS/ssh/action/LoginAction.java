@@ -34,6 +34,7 @@ public class LoginAction extends ActionSupport {
 			ActionContext.getContext().put("name",user.getUserId());
 			return SUCCESS;
 		} else {
+			ActionContext.getContext().put("error","UserId or Password is incorrect!");
 			return ERROR;
 		}
 

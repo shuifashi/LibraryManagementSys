@@ -30,7 +30,10 @@ public class BookDaoImpl extends HibernateDaoSupport implements BaseDao {
 	@Override
 	public Object getObject(Object object) throws HibernateException {
 		List<User> ls = getHibernateTemplate().findByExample(object);
-		return ls.get(0);
+		if(ls.size() != 0)
+			return ls.get(0);
+		else
+			return null;
 	}
 
 }
