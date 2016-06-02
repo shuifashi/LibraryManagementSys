@@ -46,6 +46,7 @@
 				<value>com/LMS/ssh/beans/User.hbm.xml</value>
 				<value>com/LMS/ssh/beans/registerMail.hbm.xml</value>
 				<value>com/LMS/ssh/beans/Book.hbm.xml</value>
+				<value>com/LMS/ssh/beans/Record.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -69,6 +70,11 @@
 		</property>
 	</bean>
 	<bean id="bookDao" class="com.LMS.ssh.daoImpl.BookDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="recordDao" class="com.LMS.ssh.daoImpl.RecordDaoImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -100,6 +106,11 @@
 	</bean>
 	
 	<bean id="findBookAction" class="com.LMS.ssh.action.findBookAction">
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
+	<bean id="addBookAction" class="com.LMS.ssh.action.addBookAction">
 		<property name="bookManager">
 			<ref bean="bookManager" />
 		</property>

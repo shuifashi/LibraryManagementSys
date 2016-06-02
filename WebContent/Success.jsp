@@ -15,7 +15,7 @@
 	<h1>Congratulations! Successful!</h1>
 	<h1><s:textfield name="#name" /></h1>
 	<h1><% if(session.getAttribute("name")!= null) {out.print(session.getAttribute("name"));} %></h1>
-	<s:iterator value="stuList" status="st">
+	<s:iterator value="bookList" status="st">
               <tr>                  
                     <td><s:property value="bookName" /></td>
                      <td><s:property value="bookId" /></td>                 

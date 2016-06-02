@@ -9,7 +9,7 @@
 			<generator class="uuid"/> 
 		</id>
 		<property name="Picture" column="Picture" type="java.lang.String"
-			not-null="true" length="255"></property>
+			not-null="false" length="255"></property>
 		<property name="ISBN" column="ISBN" type="java.lang.String"
 			not-null="true" length="255"></property>
 		<property name="bookName" column="bookName" type="java.lang.String"

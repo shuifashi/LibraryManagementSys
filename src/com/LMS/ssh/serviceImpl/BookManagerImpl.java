@@ -6,6 +6,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.LMS.ssh.beans.Book;
 import com.LMS.ssh.beans.User;
+import com.LMS.ssh.beans.registerMail;
 import com.LMS.ssh.dao.BaseDao;
 import com.LMS.ssh.daoImpl.BookDaoImpl;
 import com.LMS.ssh.forms.BookForm;
@@ -19,8 +20,9 @@ public class BookManagerImpl implements BookManager{
 	}
 	@Override
 	public void addBook(BookForm BookForm) throws HibernateException, InterruptedException {
-		// TODO Auto-generated method stub
-		
+		Book book = new Book();
+		BeanUtils.copyProperties(BookForm, book);
+		dao.saveObject(book);
 	}
 
 	@Override

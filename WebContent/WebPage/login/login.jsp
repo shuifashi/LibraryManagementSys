@@ -36,33 +36,29 @@
                                     <div class="form-group email">
                                         <label for="username">UserID</label>
                                         <input type="username" name="user.userId" placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="username">
-                                    </div>            
+                                    </div>        
+                                    <div class="userid-tip tip"><%if(request.getAttribute("error")!= null) {out.print(request.getAttribute("error"));} %></div>    
                                     <div class="form-group password">
                                         <label for="password">Password</label>
                                         <input type="password" name="user.password" placeholder="Password" tabindex="2" class="form-control form-control-lg" id="password">
-                                <form method="post" accept-charset="utf-8" action="Register">
- 
-                                    <div class="form-group email">
-                                        <label for="username">User</label>
-                                        <input type="text" name="username" required="true" placeholder="User" tabindex="1" class="form-control form-control-lg" id="username" pattern="\d{8}" title="请输入8位学号" >
-                                    </div>
-                                    <div class="tip">用户名或密码错误</div>            
-                                    <div class="form-group password">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" placeholder="Password" tabindex="2" class="form-control form-control-lg" id="password" required="true">
                                     </div>                    
                                     <a href="/users/reset_password" tabindex="4" class="pull-xs-right">Forgot password?</a>
                                     
                                     <div class="form-group">
                                         <div class="checkbox-fancy-wrapper">
+                                            <!-- <input type="hidden" name="remember_me" value="0" class="form-control"> -->
                                             <input type="checkbox" name="remember_me" value="1" checked="checked" class="eta" id="remember-me" class="checkbox-fancy-item">
                                             <label for="remember-me" class="radio-fancy-title">Remember me</label>
                                         </div>
                                     </div>
                 
-
+                                    <!-- <input type="hidden" name="redirect" id="redirect" value="/" class="form-control">   -->
                                     <input type="submit" value="Log In" class="btn btn-primary btn-block" tabindex="3">
-
+                
+                               <!--  <div style="display:none;">
+                                    <input type="hidden" name="_Token[fields]" class="form-control">
+                                    <input type="hidden" name="_Token[unlocked]" value="" class="form-control">
+                                </div> -->
                                 </form>
                             </div>
                         <div class="text-xs-center m-a-1">
