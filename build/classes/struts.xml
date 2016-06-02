@@ -14,9 +14,9 @@
 			<result name="error">/WebPage/register/register.jsp</result>
 		</action>
 		<action name="login" class="loginAction">
-			<result name="input">/WebPage/register/login.jsp</result>
+			<result name="input">/WebPage/login/login.jsp</result>
 			<result name="success">/Success.jsp</result> 
-			<result name="error">/Fail.jsp</result>
+			<result name="error">/WebPage/login/login.jsp</result>
 		</action>
 		<action name="findBook" class="findBookAction">
 			<result name="input">/WebPage/register/login.jsp</result>

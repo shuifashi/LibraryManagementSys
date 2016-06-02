@@ -24,12 +24,14 @@ public class BookManagerImpl implements BookManager{
 	}
 
 	@Override
-	public Book findBook(BookForm bookForm) throws HibernateException, InterruptedException {
+	public List<Object> findBook(BookForm bookForm) throws HibernateException, InterruptedException {
 		Book book = new Book();
 		BeanUtils.copyProperties(bookForm, book);
 		System.out.println(book.getBookName());
-		String queryString= "from Book as b where b.bookName='"+book.getBookName()+"'";
-		Book result = (Book)dao.getObject(queryString);
+		StringBuffer queryString= new StringBuffer("from Book as b where b.bookName like '%"+book.getBookName()+"%'");
+		if(book.getAuthor() != null)
+			queryString.append("and b.Author like '%"+book.getAuthor()+"%'");
+		List<Object> result = dao.getObjectList(new String(queryString));
 		//User result2 = (User)dao.getObject(user);
 		//System.out.println(result2.getUsername());
 		return result;

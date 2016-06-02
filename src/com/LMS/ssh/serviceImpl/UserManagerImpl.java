@@ -46,7 +46,7 @@ public class UserManagerImpl implements UserManager {
 		User result = (User) dao.getObject(queryString);
 		//User result2 = (User)dao.getObject(user);
 		//System.out.println(result2.getUsername());
-		if(result.getUserId() == user.getUserId()&&result.getPassword().equals(user.getPassword())) {
+		if(result != null && result.getUserId() == user.getUserId()&&result.getPassword().equals(user.getPassword())) {
 			return true;
 		} else {
 			return false;
