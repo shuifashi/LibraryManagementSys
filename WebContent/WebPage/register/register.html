@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <title>Login</title>
 
-
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="../common.css" />
     <link rel="stylesheet" type="text/css" href="./register.css" />
@@ -27,41 +26,35 @@
                             <img style="width: 100px;" src="" alt="Our Logo">
                         </a> -->
                             <div class="p-a-1">
-                                <form method="post" accept-charset="utf-8" action="register" novalidate>
-                                   <!--  <div style="display:none;">
-                                        <input type="hidden" name="_method" value="POST" class="form-control">
-                                        <input type="hidden" name="_csrfToken" class="form-control">
-                                    </div> -->
+
+                                <form method="post" accept-charset="utf-8" action="register" action="login" id="myform">
+  
                                     <div class="form-group userid">
                                         <label for="userId">UserId</label>
-                                        <input type="userId" name="user.userId" placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="usernId">
-                                    </div>   
+                                        <input type="text" name="user.userId"  placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="usernId" required="true" pattern="\d{8}" title="请输入8位学号">
+
+                                    </div>  
+                                    <div class="userid-tip tip">userid已被注册</div>
                                     <div class="form-group email">
                                         <label for="useremail">Email</label>
-                                        <input type="email" name="user.email" placeholder="Email" tabindex="2" class="form-control form-control-lg" id="useremail">
+                                        <input type="email" name="user.email" required="true" placeholder="Email" tabindex="2" class="form-control form-control-lg" id="useremail">
                                     </div>
                                     <div class="form-group username">
                                         <label for="username">Username</label>
-                                        <input type="username" name="user.username" placeholder="Username" tabindex="3" class="form-control form-control-lg" id="username">
+                                        <input type="text" name="user.username" required="true" placeholder="Username" tabindex="3" class="form-control form-control-lg" id="username" >
                                     </div>           
                                     <div class="form-group password">
                                         <label for="password">Password</label>
-                                        <input type="password" name="user.password" placeholder="Password" tabindex="4" class="form-control form-control-lg" id="password">
+                                        <input type="password" name="user.password" required="true" placeholder="Password" tabindex="4" class="form-control form-control-lg" id="password" pattern="\d{6,15}" title="密码长度为6~15位">
                                     </div>
                                     <div class="form-group repassword">
                                         <label for="password">Repassword</label>
-                                        <input type="password" name="repassword" placeholder="Repassword" tabindex="5" class="form-control form-control-lg" id="repassword">
+                                        <input type="password" name="repassword" required="true" placeholder="Repassword" tabindex="5" class="form-control form-control-lg" id="repassword" pattern="\d{6,15}" title="密码长度为6~15位">
                                     </div>                    
-                                  
-                                    </div>
                 
                                     <!-- <input type="hidden" name="redirect" id="redirect" value="/" class="form-control">   -->
-                                    <input type="submit" value="Create a new account" class="btn btn-primary btn-block" tabindex="3">
-                
-                               <!--  <div style="display:none;">
-                                    <input type="hidden" name="_Token[fields]" class="form-control">
-                                    <input type="hidden" name="_Token[unlocked]" value="" class="form-control">
-                                </div> -->
+                                    <input type="submit" value="Create a new account" class="btn btn-primary btn-block" tabindex="6" id="submitButton">
+                    
                                 </form>
                             </div>
                         <div class="text-xs-center m-a-1">
@@ -80,6 +73,7 @@
     <script src="../jquery.js"></script>
     <!-- <script src="//api.filepicker.io/v2/filepicker.js"></script> -->
     <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="./register.js"></script>
     <script src="../common.js"></script>
     <script src="../app.js"></script>
 
