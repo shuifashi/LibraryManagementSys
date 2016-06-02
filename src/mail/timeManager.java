@@ -3,7 +3,7 @@ package mail;
 import java.util.*;
 
 public class timeManager {
-	private static final long PERIOD_DAY = 60*60*1000;
+	private static final long PERIOD_DAY = 60*1000;
 	  
 	  public timeManager() {
 	   Calendar calendar = Calendar.getInstance();  

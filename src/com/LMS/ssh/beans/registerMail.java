@@ -4,7 +4,12 @@ public class registerMail {
 	private int userId;
 	private String username;
 	private String email;
-
+	
+	public registerMail(int userid, String username, String email) {
+		this.userId = userid;
+		this.username = username;
+		this.email = email;
+	}
 	public int getUserId() {
 		return userId;
 	}

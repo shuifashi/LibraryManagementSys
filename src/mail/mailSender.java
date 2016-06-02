@@ -1,10 +1,13 @@
 package mail;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import com.LMS.ssh.beans.registerMail;
 public class mailSender implements Runnable{
 	/*public static void main(String[] args) throws Exception {
 		mailSender mail = new mailSender("727032989@qq.com","test","just test");
@@ -13,10 +16,14 @@ public class mailSender implements Runnable{
 	private String receiver = "";
 	private String title = "";
 	private String content = "";
+	private ArrayList<registerMail> ls;
 	public mailSender(String reciver, String title, String content) {
 		this.receiver = reciver;
 		this.title = title;
 		this.content = content;
+	}
+	public mailSender(ArrayList<registerMail> ls) {
+		this.ls = ls;
 	}
 	public MimeMessage createSimpleMail(Session session
 			,String receiver,String title,String content) throws Exception {
@@ -49,10 +56,12 @@ public class mailSender implements Runnable{
 			Transport ts = session.getTransport();
 			// 3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
 			ts.connect("smtp.sina.cn", "myownsky_mail@sina.com", "myownsky");
-			// 4、创建邮件
-			Message message = createSimpleMail(session,receiver,title,content);
-			// 5、发送邮件
-			ts.sendMessage(message, message.getAllRecipients());
+			for(registerMail r : ls) {
+				// 4、创建邮件
+				Message message = createSimpleMail(session,r.getEmail(),r.getUsername(),"恭喜");
+				// 5、发送邮件
+				ts.sendMessage(message, message.getAllRecipients());
+			}
 			ts.close();
 		} catch (Exception e) {
 			e.printStackTrace();
