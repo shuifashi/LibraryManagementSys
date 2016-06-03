@@ -30,3 +30,7 @@
 .table-responsive th {
     width: 10%;
 }
+.user-info-button {
+    background-color: white;
+    border: none;
+}

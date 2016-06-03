@@ -33,18 +33,10 @@
                                 <form method="post" accept-charset="utf-8" action="register" action="login" id="myform">
   
                                     <div class="form-group userid">
-<<<<<<< HEAD:WebContent/WebPage/register/register.html
-                                        <label for="userId">UserId</label>
-                                        <input type="text" name="user.userId"  placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="usernId" required="true" pattern="\d{8}" title="请输入8位学号">
-
-                                    </div>  
-                                    <div class="userid-tip tip">userid已被注册</div>
-=======
                                         <label for="userId">UserId</label>                                 
                                         <input type="text" name="user.userId"  placeholder="UserId" tabindex="1" class="form-control form-control-lg" id="usernId" required="true" pattern="\d{8}" title="请输入8位学号">
                                     </div>  
                                     <div class="userid-tip tip"><%if(request.getAttribute("status")!= null) {out.print(request.getAttribute("status"));} %></div>
->>>>>>> c07b1eb873f1d5300bbaf8433e39729d592984f0:WebContent/WebPage/register/register.jsp
                                     <div class="form-group email">
                                         <label for="useremail">Email</label>
                                         <input type="email" name="user.email" required="true" placeholder="Email" tabindex="2" class="form-control form-control-lg" id="useremail">
