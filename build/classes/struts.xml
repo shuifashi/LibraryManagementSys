@@ -23,6 +23,11 @@
 			<result name="success">/Success.jsp</result> 
 			<result name="error">/Fail.jsp</result>
 		</action>
+		<action name="addBook" class="addBookAction">
+			<result name="input">/WebPage/register/login.jsp</result>
+			<result name="success">/Register.jsp</result> 
+			<result name="error">/Register.jsp</result>
+		</action>
 	</package>
 	
     <constant name="struts.action.extension" value=","></constant>  
