@@ -48,7 +48,7 @@ public class findBookAction extends ActionSupport {
 	}
 
 	public String execute() throws HibernateException, InterruptedException, ParseException {
-		List<Object> resultbook = BookManager.findBook(book); 
+		List<Object> resultbook = BookManager.findBook(book);
 		if(resultbook.size() != 0) {
 			bookList = resultbook;
 			ActionContext.getContext().put("book1",resultbook);

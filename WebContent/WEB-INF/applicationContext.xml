@@ -65,6 +65,11 @@
 	</bean>
 	
 	<!--数据类 -->
+	<bean id="baseDao" class="com.LMS.ssh.daoImpl.BaseDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	<bean id="userDao" class="com.LMS.ssh.daoImpl.UserDaoImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -141,6 +146,11 @@
 			<ref bean="RecordManager" />
 		</property>
 	</bean>
+	<bean id="delborrowBookAction" class="com.LMS.ssh.action.delBorrowAction">
+		<property name="RecordManager">
+			<ref bean="RecordManager" />
+		</property>
+	</bean>
 	<bean id="reserveBookAction" class="com.LMS.ssh.action.reserveBookAction">
 		<property name="RecordManager">
 			<ref bean="RecordManager" />
@@ -151,7 +161,11 @@
 			<ref bean="RecordManager" />
 		</property>
 	</bean>
-	<bean id="uploadAction" class="com.LMS.ssh.action.uploadAction"></bean>
+	<bean id="uploadAction" class="com.LMS.ssh.action.uploadAction">
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
 	<bean id="downloadAction" class="com.LMS.ssh.action.downloadAction"></bean>
 	<!-- more bean definitions go here -->
 

@@ -9,7 +9,7 @@ public class Book {
 	private String Price;
 	private String Publisher;
 	private String bookAbstract;
-	private int flag; // 1书籍在馆 2书籍借出还未被预约 3书籍借出且被预约
+	private int flag; // 1书籍在馆 2书籍借出还未被预约 3书籍借出且被预约  4图书归还但是被预约
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}

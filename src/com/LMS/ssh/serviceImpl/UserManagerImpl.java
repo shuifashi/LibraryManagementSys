@@ -20,10 +20,6 @@ public class UserManagerImpl implements UserManager {
 	public void setDao(BaseDao dao) {
 		this.dao = dao;
 	}
-	public void sendEmail(User user) {
-    	mailSender mail = new mailSender(user.getEmail(),"¹§Ï²"+user.getUsername()+"×¢²á³É¹¦!","¹§Ï²"+user.getUsername()+"×¢²á³É¹¦!");
-    	mail.run();
-    }
 	@Override
 	public void regUser(UserForm userForm) throws HibernateException, InterruptedException {
 		User user = new User();
@@ -36,7 +32,6 @@ public class UserManagerImpl implements UserManager {
 		//System.out.println(name);
 		//ActionContext.getContext().put("name",name);
 		//ActionContext.getContext().getSession().put("name", name);
-		//sendEmail(user);
 	}
 	@Override
 	public boolean loginUser(UserForm userForm) throws HibernateException, InterruptedException {

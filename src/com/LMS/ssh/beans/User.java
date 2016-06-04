@@ -6,7 +6,7 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
-	private int flag; //0允许借书和预约，1不允许借书和预约
+	private int flag; //1允许借书和预约，0不允许借书和预约
 
 	public String getUserId() {
 		return UserId;

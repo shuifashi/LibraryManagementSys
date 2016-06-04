@@ -21,6 +21,7 @@
                      <td><s:property value="bookId" /></td>                 
                  </tr> 
  	</s:iterator>
+ 	<a href= "/LibraryManagementSys/findBook?book.bookId=1">
  	<h2><% List<Object> book = (List<Object>)ActionContext.getContext().get("book1");  
  	if(book != null && book.size() != 0) {
  		for(Object o: book) {

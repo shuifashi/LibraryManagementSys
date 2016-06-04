@@ -12,6 +12,7 @@ import com.LMS.ssh.beans.Book;
 import com.LMS.ssh.beans.User;
 import com.LMS.ssh.beans.Record;
 import com.LMS.ssh.beans.registerMail;
+import com.LMS.ssh.beans.reserveMail;
 import com.LMS.ssh.dao.BaseDao;
 import com.LMS.ssh.daoImpl.RecordDaoImpl;
 import com.LMS.ssh.daoImpl.UserDaoImpl;
@@ -49,7 +50,9 @@ public class RecordManagerImpl implements RecordManager{
 		Book book = (Book)bookDao.getObject(statement);
 		statement = new String("from User as u where u.userId = '"+record.getUserId()+"'");
 		User user = (User)userDao.getObject(statement);
-		if(user.getFlag() == 1 && book.getFlag() == 2) {
+		statement = new String("from Record as r where r.bookId = '"+record.getBookId()+"' and r.type = 0");
+		Record borrowhistory = (Record)recordDao.getObject(statement);
+		if(user.getFlag() == 1 && book.getFlag() == 2 && borrowhistory != null && !borrowhistory.getUserId().equals(record.getUserId())) {
 			SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 			Date beginDay = new Date();
 		    record.setType(1);
@@ -58,6 +61,9 @@ public class RecordManagerImpl implements RecordManager{
 		    this.recordDao.saveObject(record);
 		    book.setFlag(3);
 			this.bookDao.update(book);
+			Record reserveRecord = (Record)recordDao.getObject(record);
+			reserveMail reservemail = new reserveMail(reserveRecord.getRecordId(),user.getEmail(),user.getUsername(),book.getBookName(),null,0);
+			this.bookDao.saveObject(reservemail);
 			return "Success";
 		} else {
 			System.out.println(user.getFlag());
@@ -67,6 +73,10 @@ public class RecordManagerImpl implements RecordManager{
 				return "书籍尚未借出，请直接前往图书馆借书!";
 			else if(book.getFlag() == 3)
 				return "书籍已经被预约!";
+			else if(book.getFlag() == 4)
+				return "书籍已经被预约!";
+			else if(borrowhistory.getUserId().equals(record.getUserId()))
+				return "不可以预约自己借走的书籍!";
 			else
 				return "fail!";
 		}
@@ -112,8 +122,10 @@ public class RecordManagerImpl implements RecordManager{
 			System.out.println("OK");
 			return "Success";
 		} else {
-			if(book.getFlag() != 1)
+			if(book.getFlag() == 2 || book.getFlag() == 3)
 				return "书籍已经被借出!";
+			else if(book.getFlag() == 4)
+				return "书籍已经被预约!";
 			else
 				return "用户权限被暂停!";
 		}
@@ -128,10 +140,15 @@ public class RecordManagerImpl implements RecordManager{
 		System.out.println(record.getRecordId());
 		statement = new String("from Book as b where b.bookId = '"+record.getBookId()+"'");
 		Book book = (Book)bookDao.getObject(statement);
-		if(book.getFlag() == 3 && record.getType() == 1) {
+		if(record.getType() == 1) {
 			statement = new String("from Record as r where r.recordId = '"+record.getRecordId()+"'");
 			Record history = (Record)this.recordDao.getObject(statement);
-			book.setFlag(2);
+			statement = new String("from Record as r where r.bookId = '"+record.getBookId()+"' and r.type = 0");
+			Record borrow = (Record)this.recordDao.getObject(statement);
+			if(borrow != null)
+				book.setFlag(2);
+			else
+				book.setFlag(1);
 			this.bookDao.update(book);
 			this.recordDao.delete(history);
 			return "Success";
@@ -140,22 +157,64 @@ public class RecordManagerImpl implements RecordManager{
 	}
 	@Override
 	public synchronized String delBorrow(RecordForm recordForm) throws HibernateException, InterruptedException {
-		Record re = new Record();
-		BeanUtils.copyProperties(recordForm, re);	
-		String statement = new String("from Record as r where r.recordId = '"+ re.getRecordId()+"'");
-		Record record = (Record)this.recordDao.getObject(statement);
-		System.out.println(record.getRecordId());
-		statement = new String("from Book as b where b.bookId = '"+record.getBookId()+"'");
+		Record record = new Record();
+		BeanUtils.copyProperties(recordForm, record);	
+		String statement = new String("from Book as b where b.bookId = '"+record.getBookId()+"'");
 		Book book = (Book)bookDao.getObject(statement);
-		if(book.getFlag() == 3 && record.getType() == 1) {
-			statement = new String("from Record as r where r.recordId = '"+record.getRecordId()+"'");
-			Record history = (Record)this.recordDao.getObject(statement);
-			book.setFlag(2);
-			this.bookDao.update(book);
-			this.recordDao.delete(history);
+		if(book != null)
+			System.out.println(book.getBookId());
+		statement = new String("from User as u where u.userId = '"+record.getUserId()+"'");
+		User user = (User)userDao.getObject(statement);
+		if(user != null)
+			System.out.println(user.getUserId());
+		statement = new String("from Record as r where r.bookId = '"+record.getBookId()+"' and r.userId = '"+record.getUserId()+"' and r.type = 0");
+		Record borrowhistory = (Record)recordDao.getObject(statement);
+		if(borrowhistory != null) {
+			recordDao.delete(borrowhistory);
+			statement = new String("from Record as r where r.bookId = '"+book.getBookId()+"' and r.type = 1");
+			Record reservehistory = (Record)recordDao.getObject(statement);
+			if(reservehistory != null) {
+				book.setFlag(4);
+				bookDao.update(book);
+				reservehistory.setFlag(2);
+				SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+				Date today = new Date();
+				Calendar calendar=Calendar.getInstance();
+				calendar.setTime(today);	
+				calendar.add(Calendar.DAY_OF_MONTH,1);
+				Date endDay = calendar.getTime();
+				reservehistory.setEndTime(sp.format(endDay));
+				recordDao.update(reservehistory);
+				statement = new String("from User as u where u.userId = '"+reservehistory.getUserId()+"'");
+				User reserveuser = (User)userDao.getObject(statement);
+				reserveMail reservemail = new reserveMail(reservehistory.getRecordId(),reserveuser.getEmail(),reserveuser.getUsername(),book.getBookName(),reservehistory.getEndTime(),1);
+				this.bookDao.saveObject(reservemail);
+				this.bookDao.update(reservemail);
+			} else {
+				book.setFlag(1);
+				bookDao.update(book);
+			}
+			System.out.println("userflag");
+			System.out.println(user.getFlag());
+			if(user.getFlag() == 0) {
+				statement = new String("from Record as r where r.userId = '"+borrowhistory.getUserId()+"' and r.type = 0 and r.flag = 0");
+				System.out.println(borrowhistory.getUserId());
+				List<Object> list = recordDao.getObjectList(statement);
+				if(list == null || list.size() == 0) {
+					user.setFlag(1);
+					userDao.update(user);
+				}
+			}
 			return "Success";
+		} else {
+			if(book == null)
+				return "书籍不存在!";
+			else if(user == null)
+				return "用户不存在!";
+			else if(borrowhistory == null)
+				return "记录不存在!";
+			return "fail!";
 		}
-		return "Fail";
 	}
 	
 }

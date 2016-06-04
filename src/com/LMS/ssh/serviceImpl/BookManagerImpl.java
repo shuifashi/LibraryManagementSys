@@ -13,7 +13,7 @@ import com.LMS.ssh.forms.BookForm;
 import com.LMS.ssh.service.BookManager;
 import com.opensymphony.xwork2.ActionContext;
 public class BookManagerImpl implements BookManager{
-	private BookDaoImpl dao;
+	private BaseDao dao;
 
 	public void setDao(BookDaoImpl dao) {
 		this.dao = dao;
@@ -30,9 +30,8 @@ public class BookManagerImpl implements BookManager{
 		Book book = new Book();
 		BeanUtils.copyProperties(bookForm, book);
 		System.out.println(book.getBookName());
+		System.out.println(book.getAuthor());
 		StringBuffer queryString= new StringBuffer("from Book as b where b.bookName like '%"+book.getBookName()+"%'");
-		if(book.getAuthor() != null)
-			queryString.append("and b.Author like '%"+book.getAuthor()+"%'");
 		List<Object> result = dao.getObjectList(new String(queryString));
 		//User result2 = (User)dao.getObject(user);
 		//System.out.println(result2.getUsername());

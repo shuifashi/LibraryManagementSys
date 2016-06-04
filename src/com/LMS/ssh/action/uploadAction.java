@@ -11,21 +11,33 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.HibernateException;
 
+import com.LMS.ssh.forms.BookForm;
+import com.LMS.ssh.service.BookManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 
 public class uploadAction extends ActionSupport {
-
+	private static final long serialVersionUID = 1L;
 	private File upload;
 	private String uploadFileName;	
 	private String uploadContentType;
-	
 	private long maximumSize;
 	private String allowedTypes;
-	
-
+	private BookForm book;
+	private BookManager BookManager;
+	public BookForm getBook() {
+		return book;
+	}
+	public void setBook(BookForm Book) {
+		this.book = Book;
+		this.book.setFlag(1);
+	}
+	public void setBookManager(BookManager BookManager) {
+		this.BookManager = BookManager;
+	}
 	public File getUpload() {
 		return upload;
 	}
@@ -39,7 +51,6 @@ public class uploadAction extends ActionSupport {
 		System.out.println(uploadFileName);
 		this.uploadFileName = uploadFileName;
 	}
-
 	public String getUploadContentType() {
 		return uploadContentType;
 	}
@@ -59,8 +70,7 @@ public class uploadAction extends ActionSupport {
 		this.allowedTypes = allowedTypes;
 	}
 	@Override
-	public String execute() throws Exception {
-		
+	public String execute() throws Exception,HibernateException, InterruptedException {
 		File uploadFile = new File(ServletActionContext.getServletContext().getRealPath("upload"));
 		if(!uploadFile.exists()) {
 			uploadFile.mkdir();
@@ -68,9 +78,9 @@ public class uploadAction extends ActionSupport {
 		ActionContext.getContext().put("name",uploadFile.getPath());
 		//验证文件大小及格式
 		if (maximumSize < upload.length()) {
+			ActionContext.getContext().put("status","文件过大!");
 			return "error";
-		}
-		
+		}	
 		boolean flag =false;
 		String[] allowedTypesStr = allowedTypes.split(",");
 		for (int i = 0; i < allowedTypesStr.length; i++) {
@@ -79,61 +89,28 @@ public class uploadAction extends ActionSupport {
 			}
 		}
 		if (flag == false) {
-			Map request = (Map) ActionContext.getContext().get("request");
-			request.put("errorMassage", "文件类型不合法！");
-			
-			System.out.println(request.toString());
+			//Map request = (Map)ActionContext.getContext().get("request");
+			//request.put("errorMassage", "文件类型不合法！");
+			ActionContext.getContext().put("status","文件类型不合法!");
 			return "error";
-		}
-		
-		//第一种上传方式
-//		FileInputStream input = new FileInputStream(upload);
-//		FileOutputStream out = new FileOutputStream(uploadFile +"//"+ uploadFileName);
-//		try {
-//			byte[] b =new byte[1024];
-//			int i = 0;
-//			while ((i=input.read(b))>0) {
-//				out.write(b, 0, i);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			//关闭输入、输出流
-//			input.close();
-//			out.close();
-//			//删除临时文件
-//			upload.delete();
-//		}
-		
-		//第二种上传方式
+		}	
 		FileUtils.copyFile(upload, new File(uploadFile+"\\"+uploadFileName));
 		String fileType = uploadFileName.substring(uploadFileName.lastIndexOf("."));
 		System.out.println(uploadFileName.substring(uploadFileName.lastIndexOf(".")));
 		System.out.println(uploadContentType);
-		FileUtils.copyFile(upload, new File(uploadFile+"\\"+"test"+fileType));
+		FileUtils.copyFile(upload, new File(uploadFile+"\\"+book.getBookName()+fileType));
 		//删除临时文件
 		upload.delete();
-		
-		/*//第三种上传方式
-		BufferedReader bReader = new BufferedReader(new InputStreamReader(new FileInputStream(upload)));
-		BufferedWriter bWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(uploadFile+"\\"+ uploadFileName)));
 		try {
-			char [] c =new char[1024];
-			int i = 0;
-			while ((i = bReader.read(c)) > 0) {
-				bWriter.write(c, 0, i);
-			}
+			book.setPicture(book.getBookName()+fileType);
+			BookManager.addBook(book);
+			return SUCCESS;
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			bReader.close();
-			bWriter.close();			
-			//删除临时文件
-			upload.delete();
-		}*/
-		
-		
-		return "success";
+			ActionContext.getContext().put("status","Information is not completed!");
+			return ERROR;
+		}
 	}	
 	
 }

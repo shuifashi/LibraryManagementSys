@@ -36,6 +36,11 @@
 		<s:textfield name="record.userId" label="Userid"><% if(session.getAttribute("userId")!= null) {out.print(session.getAttribute("userId"));} %></s:textfield>
 		<s:submit value="借书" name = 'test'></s:submit>
 	</s:form>
+	<s:form action="delborrowBook">
+		<s:textfield name="record.bookId" label="书籍id"></s:textfield>
+		<s:textfield name="record.userId" label="Userid"><% if(session.getAttribute("userId")!= null) {out.print(session.getAttribute("userId"));} %></s:textfield>
+		<s:submit value="del借书" name = 'test'></s:submit>
+	</s:form>
 	<h1><br>${status}</br></h1>
 	<s:form action="reserveBook">
 		<s:textfield name="record.bookId" label="书籍id"></s:textfield>
@@ -50,7 +55,13 @@
 	<% out.print(getServletContext().getRealPath("upload")); %>
 	<!-- enctype="multipart/form-data"不对字符编码。在使用包含文件上传控件的表单时，必须使用该值。 -->
 	<form action="file/upLoad" method="post" enctype="multipart/form-data">
-		<input name="upload" type="file">
+		<br>照片<input name="upload" type="file">
+		<br>书名<input name="book.bookName">
+		<br>ISBN<input name="book.ISBN">
+		<br>作者<input name="book.Author">
+		<br>价格<input name="book.Price">
+		<br>出版社<input name="book.Publisher">
+		<br>摘要<input name="book.bookAbstract">
 		<input name="btnUpload" type="submit" value="上传">
 	</form>
 	

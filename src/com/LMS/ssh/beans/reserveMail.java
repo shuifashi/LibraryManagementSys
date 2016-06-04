@@ -14,7 +14,10 @@ public class reserveMail {
 		this.userName = userName;
 		this.bookName = bookName;
 		this.endTime = endTime;
-		this.flag = flag;
+		this.flag = flag; // 0预约等待 1预约成功
+	}
+	public reserveMail() {
+		// TODO Auto-generated constructor stub
 	}
 	public void setRecordId(String recordId) {
 		this.recordId = recordId;

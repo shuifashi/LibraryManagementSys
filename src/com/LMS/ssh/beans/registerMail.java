@@ -10,6 +10,9 @@ public class registerMail {
 		this.username = username;
 		this.email = email;
 	}
+	public registerMail() {
+		
+	}
 	public String getUserId() {
 		return userId;
 	}
