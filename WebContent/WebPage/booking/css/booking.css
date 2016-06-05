@@ -1,3 +1,8 @@
-.user-id {
+#userId {
     display:none;
 }
+
+#bookId {
+	display:none;
+}
+

@@ -1,5 +1,6 @@
 package com.LMS.ssh.action;
 
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.HibernateException;
 
 import com.LMS.ssh.forms.UserForm;
@@ -30,7 +31,7 @@ public class LoginAction extends ActionSupport {
 
 	public String execute() throws HibernateException, InterruptedException {
 		if(userManager.loginUser(user) == true) {
-			ActionContext.getContext().getSession().put("name", user.getUserId());
+			ActionContext.getContext().getSession().put("userId", user.getUserId());
 			ActionContext.getContext().put("name",user.getUserId());
 			return SUCCESS;
 		} else {

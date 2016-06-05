@@ -11,7 +11,7 @@ public class RecordForm {
 	public void setRecordId(String recordId) {
 		this.recordId = recordId;
 	}
-	public String getRecorId() {
+	public String getRecordId() {
 		return this.recordId;
 	}
 	public void setUserId(String userId) {

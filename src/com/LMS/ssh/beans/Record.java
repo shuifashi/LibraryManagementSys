@@ -7,7 +7,7 @@ public class Record {
 	private String beginTime;
 	private String endTime;
 	private int type; // 0借书     1预约
-	private int flag; // 0过期    1有效
+	private int flag; // 借书情况下：0过期    1有效     预约情况下：0过期   1等待  2激活
 	public void setRecordId(String recordId) {
 		this.recordId = recordId;
 	}

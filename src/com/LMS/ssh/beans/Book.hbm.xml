@@ -20,8 +20,10 @@
 			not-null="true" length="255"></property>
 		<property name="Publisher" column="Publisher" type="java.lang.String"
 			not-null="true" length="255"></property>
+		<property name="location" column="location" type="java.lang.String"
+			not-null="true" length="255"></property>	
 		<property name="bookAbstract" column="bookAbstract" type="java.lang.String"
 			not-null="true" length="255"></property>
-		<property name="flag" column="flag" type="int" length="1" />
+		<property name="flag" column="flag" type="int" length="10" />
 	</class>
 </hibernate-mapping>

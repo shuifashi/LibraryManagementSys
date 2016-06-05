@@ -19,7 +19,10 @@ public class UserDaoImpl extends HibernateDaoSupport implements BaseDao {
 	public Object getObject(String queryString) throws HibernateException {
 		// TODO Auto-generated method stub
 		List<User> ls = getHibernateTemplate().find(queryString);
-		return ls.get(0);
+		if(ls.size() != 0)
+			return ls.get(0);
+		else
+			return null;
 	}
 
 	@Override
@@ -33,7 +36,17 @@ public class UserDaoImpl extends HibernateDaoSupport implements BaseDao {
 	public Object getObject(Object object) throws HibernateException {
 		// TODO Auto-generated method stub
 		List<User> ls = getHibernateTemplate().findByExample(object);
-		return ls.get(0);
+		if(ls.size() != 0)
+			return ls.get(0);
+		else
+			return null;
+	}
+	public void update(Object obj) throws HibernateException {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().update(obj);
+	}
+	public void delete(Object obj) throws HibernateException {
+		getHibernateTemplate().delete(obj);
 	}
 
 }

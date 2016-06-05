@@ -1,5 +1,6 @@
 package mail;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Session;
@@ -9,20 +10,8 @@ import javax.mail.internet.MimeMessage;
 
 import com.LMS.ssh.beans.registerMail;
 public class mailSender implements Runnable{
-	/*public static void main(String[] args) throws Exception {
-		mailSender mail = new mailSender("727032989@qq.com","test","just test");
-		mail.run();
-	}*/
-	private String receiver = "";
-	private String title = "";
-	private String content = "";
-	private ArrayList<registerMail> ls;
-	public mailSender(String reciver, String title, String content) {
-		this.receiver = reciver;
-		this.title = title;
-		this.content = content;
-	}
-	public mailSender(ArrayList<registerMail> ls) {
+	List<HashMap<String,String>> ls;
+	public mailSender(List<HashMap<String,String>> ls) {
 		this.ls = ls;
 	}
 	public MimeMessage createSimpleMail(Session session
@@ -41,7 +30,7 @@ public class mailSender implements Runnable{
 		return message;
 	}
 
-	public void sendMail(String receiver, String title, String content) {
+	public void sendMail() {
 		try {
 			Properties prop = new Properties();
 			prop.setProperty("mail.host", "smtp.sina.cn");
@@ -56,9 +45,9 @@ public class mailSender implements Runnable{
 			Transport ts = session.getTransport();
 			// 3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
 			ts.connect("smtp.sina.cn", "myownsky_mail@sina.com", "myownsky");
-			for(registerMail r : ls) {
+			for(HashMap<String,String> m : ls) {
 				// 4、创建邮件
-				Message message = createSimpleMail(session,r.getEmail(),r.getUsername(),"恭喜");
+				Message message = createSimpleMail(session,m.get("receiver"),m.get("title"),m.get("content"));
 				// 5、发送邮件
 				ts.sendMessage(message, message.getAllRecipients());
 			}
@@ -70,6 +59,6 @@ public class mailSender implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		sendMail(receiver, title, content);
+		sendMail();
 	}
 }

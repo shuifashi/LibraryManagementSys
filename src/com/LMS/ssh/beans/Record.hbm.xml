@@ -15,8 +15,8 @@
 		<property name="beginTime" column="beginTime" type="java.lang.String"
 			not-null="true" length="255"></property>
 		<property name="endTime" column="endTime" type="java.lang.String"
-			not-null="true" length="255"></property>
-		<property name="type" column="type" type="int" length="1" />	
-		<property name="flag" column="flag" type="int" length="1" />
+			not-null="false" length="255"></property>
+		<property name="type" column="type" type="int" length="10" />	
+		<property name="flag" column="flag" type="int" length="10" />
 	</class>
 </hibernate-mapping>

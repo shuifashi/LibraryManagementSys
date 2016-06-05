@@ -15,15 +15,45 @@
 		</action>
 		<action name="login" class="loginAction">
 			<result name="input">/WebPage/login/login.jsp</result>
-			<result name="success">/Success.jsp</result> 
+			<result name="success">/WebPage/search/search.jsp</result> 
 			<result name="error">/WebPage/login/login.jsp</result>
 		</action>
-		<action name="findBook" class="findBookAction">
-			<result name="input">/WebPage/register/login.jsp</result>
-			<result name="success">/Success.jsp</result> 
-			<result name="error">/Fail.jsp</result>
+		<action name="normalfindBook" class="noramlfindBookAction">
+			<result name="input">/WebPage/login/login.jsp</result>
+			<result name="success">/WebPage/booking/booking.jsp</result> 
+			<result name="error">/WebPage/search/search.jsp</result>
+		</action>
+		<action name="superfindBook" class="superfindBookAction">
+			<result name="input">/WebPage/login/login.jsp</result>
+			<result name="success">/WebPage/booking/booking.jsp</result> 
+			<result name="error">/WebPage/power-search/psearch.jsp</result>
+		</action>
+		<action name="bookInfo" class="bookInfoAction">
+			<result name="input"></result>
+			<result name="success">/WebPage/bookinfo/bookinfo.jsp</result> 
+			<result name="error">/WebPage/booking/booking.jsp</result>
 		</action>
 		<action name="addBook" class="addBookAction">
+			<result name="input">/WebPage/register/login.jsp</result>
+			<result name="success">/Register.jsp</result> 
+			<result name="error">/Register.jsp</result>
+		</action>
+		<action name="borrowBook" class="borrowBookAction">
+			<result name="input">/WebPage/register/login.jsp</result>
+			<result name="success">/Register.jsp</result> 
+			<result name="error">/Register.jsp</result>
+		</action>
+		<action name="delborrowBook" class="delborrowBookAction">
+			<result name="input">/WebPage/register/login.jsp</result>
+			<result name="success">/Register.jsp</result> 
+			<result name="error">/Register.jsp</result>
+		</action>
+		<action name="reserveBook" class="reserveBookAction">
+			<result name="input"></result>
+			<result name="success">/WebPage/booking/booking.jsp</result> 
+			<result name="error">/WebPage/booking/booking.jsp</result>
+		</action>
+		<action name="delreserveBook" class="delreserveBookAction">
 			<result name="input">/WebPage/register/login.jsp</result>
 			<result name="success">/Register.jsp</result> 
 			<result name="error">/Register.jsp</result>
@@ -40,12 +70,13 @@
     <package name="upload" namespace="/file" extends="struts-default">  
         <action name="upLoad" class="uploadAction">  
             <result name="success">/Success.jsp</result>  
-            <result name="error" >/error.jsp</result>  
-            <result name = "input" type ="redirect">/index.jsp</result>  
+            <result name="error" >/fail.jsp</result>  
+            <result name="input" type ="redirect">/index.jsp</result>  
             <param name="maximumSize ">100000000</param>  
             <param name="allowedTypes">
             	image/bmp,image/png,image/gif,image/jpeg,image/jpg,
-       			image/pjpeg ,image/bmp, image/gif, image/x-png,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain
+       			image/pjpeg ,image/bmp, image/gif, image/x-png
+       			<!-- application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain-->
             </param>  
         </action>  
         <action name="download" class="downloadAction">

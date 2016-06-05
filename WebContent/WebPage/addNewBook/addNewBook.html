@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>书籍录入</title>
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="../common.css" />
+    <link rel="stylesheet" type="text/css" href="addNewBook.css" />
+
+
+</head>
+
+<body class="">
+    
+
+
+<div id="content" role="main">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 m-t-3">
+                <div class="card">
+                    <div class="card-block">
+                      <!--   <a href="/" class="image-link m-a-2" style="display: block;text-align: center;">
+                            <img style="width: 100px;" src="" alt="Our Logo">
+                        </a> -->
+                            <div class="p-a-1">
+                                <form method="post" accept-charset="utf-8" action="addNewBook" novalidate>
+                                   <!--  <div style="display:none;">
+                                        <input type="hidden" name="_method" value="POST" class="form-control">
+                                        <input type="hidden" name="_csrfToken" class="form-control">
+                                    </div> -->
+                                    <div class="form-group bookName">
+                                        <label for="bookName">书名</label>
+                                        <input type="bookName" name="book.bookName" placeholder="BookName" tabindex="1" class="form-control form-control-lg" id="bookName" />                                
+                                    </div> 
+                                    <div class="form-group bookCover">
+                                        <label for="bookPicture">封面</label>
+                                        <input type="file" name="book.Picture" placeholder="选择文件..." tabindex="2" class="form-control form-control-lg" id="bookCover" />
+                                        <img src="浪潮.jpg" width="180px" height="200px"/>
+                                    </div>
+                                    <div class="form-group ISBN">
+                                        <label for="ISBN">ISBN号</label>
+                                        <input type="ISBN" name="book.ISBN" placeholder="ISBN" tabindex="3" class="form-control form-control-lg" id="ISBN" />
+                                    </div>           
+                                    <div class="form-group author">
+                                        <label for="author">作者</label>
+                                        <input type="author" name="book.author" placeholder="author" tabindex="4" class="form-control form-control-lg" id="author" />
+                                    </div>
+                                    <div class="form-group price">
+                                        <label for="password">价格</label>
+                                        <input type="price" name="price" placeholder="price" tabindex="5" class="form-control form-control-lg" id="price">
+                                    </div>                    
+                                 	<div class="form-group publisher">
+                                        <label for="password">出版社</label>
+                                        <input type="publisher" name="publisher" placeholder="publisher" tabindex="6" class="form-control form-control-lg" id="publisher" />
+                                    </div>    
+                					
+                					<div class="form-group location">
+                                        <label for="location">书籍所在书架位置</label>
+                                        <input type="location" name="location" placeholder="location" tabindex="7" class="form-control form-control-lg" id="location" />
+                                    </div>
+
+                                    <div class="form-group bookAbstract">
+                                        <label for="bookAbstract">书籍介绍</label>
+                                        <input type="bookAbstract" name="bookAbstract" placeholder="bookAbstract" tabindex="8" class="form-control form-control-lg" id="bookAbstract" />
+                                    </div>
+
+                                    <!-- <input type="hidden" name="redirect" id="redirect" value="/" class="form-control">   -->
+                                    <input type="submit" value="书籍入库" class="btn btn-primary btn-block" tabindex="3" />
+                
+                               <!--  <div style="display:none;">
+                                    <input type="hidden" name="_Token[fields]" class="form-control">
+                                    <input type="hidden" name="_Token[unlocked]" value="" class="form-control">
+                                </div> -->
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div> <!-- close #content -->
+
+
+    <script src="../jquery.js"></script>
+    <!-- <script src="//api.filepicker.io/v2/filepicker.js"></script> -->
+    <script src="../bootstrap/js/bootstrap.js"></script>
+    <script src="../common.js"></script>
+    <script src="../app.js"></script>
+	<script src="js/addNewBook.js"></script>
+</body>
+</html>
+

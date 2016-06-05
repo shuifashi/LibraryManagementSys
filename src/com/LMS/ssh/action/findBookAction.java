@@ -48,18 +48,7 @@ public class findBookAction extends ActionSupport {
 	}
 
 	public String execute() throws HibernateException, InterruptedException, ParseException {
-		List<Object> resultbook = BookManager.findBook(book); 
-	    
-	    String s="2016-06-02 23:12:21";   
-	    SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");   
-	    java.util.Date du = sp.parse(s);
-	    Calendar calendar=Calendar.getInstance();
-	    calendar.setTime(du);	
-	    calendar.add(Calendar.DAY_OF_MONTH,30);
-	    java.util.Date endday = calendar.getTime();
-	    System.out.println(du.toString());
-	    System.out.println(sp.format(du));
-	    System.out.println(sp.format(endday));
+		List<Object> resultbook = BookManager.findBook(book);
 		if(resultbook.size() != 0) {
 			bookList = resultbook;
 			ActionContext.getContext().put("book1",resultbook);

@@ -18,7 +18,10 @@ public class BookDaoImpl extends HibernateDaoSupport implements BaseDao {
 	@Override
 	public Object getObject(String queryString) throws HibernateException {
 		List<User> ls = getHibernateTemplate().find(queryString);
-		return ls.get(0);
+		if(ls.size() != 0)
+			return ls.get(0);
+		else
+			return null;
 	}
 
 	@Override
@@ -34,6 +37,15 @@ public class BookDaoImpl extends HibernateDaoSupport implements BaseDao {
 			return ls.get(0);
 		else
 			return null;
+	}
+
+	@Override
+	public void update(Object obj) throws HibernateException {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().update(obj);
+	}
+	public void delete(Object obj) throws HibernateException {
+		getHibernateTemplate().delete(obj);
 	}
 
 }

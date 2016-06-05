@@ -4,7 +4,7 @@ import javax.servlet.ServletContextListener;
 
 public class registerTaskListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent event) {
-		new registerNoticeManager();
+		new registerNoticeManager(event);
 	}
 	public void contextDestroyed(ServletContextEvent event) {}
 }

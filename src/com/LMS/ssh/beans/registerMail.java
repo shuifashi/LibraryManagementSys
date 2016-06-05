@@ -1,20 +1,23 @@
 package com.LMS.ssh.beans;
 
 public class registerMail {
-	private int userId;
+	private String userId;
 	private String username;
 	private String email;
 	
-	public registerMail(int userid, String username, String email) {
+	public registerMail(String userid, String username, String email) {
 		this.userId = userid;
 		this.username = username;
 		this.email = email;
 	}
-	public int getUserId() {
+	public registerMail() {
+		
+	}
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

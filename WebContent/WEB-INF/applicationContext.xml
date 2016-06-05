@@ -47,6 +47,7 @@
 				<value>com/LMS/ssh/beans/registerMail.hbm.xml</value>
 				<value>com/LMS/ssh/beans/Book.hbm.xml</value>
 				<value>com/LMS/ssh/beans/Record.hbm.xml</value>
+				<value>com/LMS/ssh/beans/reserveMail.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -64,6 +65,11 @@
 	</bean>
 	
 	<!--数据类 -->
+	<bean id="baseDao" class="com.LMS.ssh.daoImpl.BaseDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	<bean id="userDao" class="com.LMS.ssh.daoImpl.UserDaoImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -75,6 +81,16 @@
 		</property>
 	</bean>
 	<bean id="recordDao" class="com.LMS.ssh.daoImpl.RecordDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="registerMailDao" class="com.LMS.ssh.daoImpl.registerMailDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="reserveMailDao" class="com.LMS.ssh.daoImpl.reserveMailDaoImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
@@ -91,7 +107,17 @@
 			<ref bean="bookDao" />
 		</property>
 	</bean>
-
+	<bean id="RecordManager" class="com.LMS.ssh.serviceImpl.RecordManagerImpl">
+		<property name="recordDao">
+			<ref bean="recordDao" />
+		</property>
+		<property name="bookDao">
+			<ref bean="bookDao" />
+		</property>
+		<property name="userDao">
+			<ref bean="userDao" />
+		</property>
+	</bean>
 	<!-- Action -->
 	<bean id="regAction" class="com.LMS.ssh.action.RegisterAction">
 		<property name="userManager">
@@ -105,7 +131,17 @@
 		</property>
 	</bean>
 	
-	<bean id="findBookAction" class="com.LMS.ssh.action.findBookAction">
+	<bean id="superfindBookAction" class="com.LMS.ssh.action.superfindBookAction">
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
+	<bean id="bookInfoAction" class="com.LMS.ssh.action.bookInfoAction">
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
+	<bean id="noramlfindBookAction" class="com.LMS.ssh.action.normalfindBookAction">
 		<property name="bookManager">
 			<ref bean="bookManager" />
 		</property>
@@ -115,8 +151,34 @@
 			<ref bean="bookManager" />
 		</property>
 	</bean>
-	
-	<bean id="uploadAction" class="com.LMS.ssh.action.uploadAction"></bean>
+	<bean id="borrowBookAction" class="com.LMS.ssh.action.borrowAction">
+		<property name="RecordManager">
+			<ref bean="RecordManager" />
+		</property>
+	</bean>
+	<bean id="delborrowBookAction" class="com.LMS.ssh.action.delBorrowAction">
+		<property name="RecordManager">
+			<ref bean="RecordManager" />
+		</property>
+	</bean>
+	<bean id="reserveBookAction" class="com.LMS.ssh.action.reserveBookAction">
+		<property name="RecordManager">
+			<ref bean="RecordManager" />
+		</property>
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
+	<bean id="delreserveBookAction" class="com.LMS.ssh.action.delReserveAction">
+		<property name="RecordManager">
+			<ref bean="RecordManager" />
+		</property>
+	</bean>
+	<bean id="uploadAction" class="com.LMS.ssh.action.uploadAction">
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
 	<bean id="downloadAction" class="com.LMS.ssh.action.downloadAction"></bean>
 	<!-- more bean definitions go here -->
 
