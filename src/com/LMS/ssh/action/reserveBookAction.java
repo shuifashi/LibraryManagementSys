@@ -61,12 +61,14 @@ public class reserveBookAction extends ActionSupport {
 			String searchType = (String) ActionContext.getContext().getSession().get("searchType");
 			BookForm searchBook = (BookForm) ActionContext.getContext().getSession().get("searchBook");
 			List<Object> resultbook;
-			if(searchType.equals("super")) {
-				resultbook = BookManager.superfindBook(searchBook);
-			}else{
-				resultbook = BookManager.normalfindBook(searchBook);
+			if(searchType != null ) {
+				if(searchType.equals("super")) {
+					resultbook = BookManager.superfindBook(searchBook);
+				}else{
+					resultbook = BookManager.normalfindBook(searchBook);
+				}
+				ActionContext.getContext().getSession().put("book1",resultbook);
 			}
-			ActionContext.getContext().getSession().put("book1",resultbook);
 			record = null;
 			return SUCCESS;
 		} else {

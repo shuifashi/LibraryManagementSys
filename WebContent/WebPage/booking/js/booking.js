@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 	if($("div.successFlag").html()=="0" || $("div.successFlag").html()=="1") {
 		if($("div.successFlag").html()=="0") {
 			$("#outputWords").html("预约失败")

@@ -61,7 +61,7 @@
                             </div>
                         <div class="text-xs-center m-a-1">
                             <small>Already have an account?</small>
-                            <p class="small"><a href="/LibraryManagementSys/WebPage/login/login.jsp" tabindex="5" class="xs-padding-right-small">Login in</a> or <a href="/users/work_on_projects" tabindex="5" class="xs-padding-left-small">Just Have a Look</a></p>
+                            <p class="small"><a href="/LibraryManagementSys/WebPage/login/login.jsp" tabindex="5" class="xs-padding-right-small">Login in</a></p>
                         </div>
                     </div>
                 </div>

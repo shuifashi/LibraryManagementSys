@@ -6,7 +6,13 @@
 <struts>
 
 	<include file="struts-default.xml" />
-	
+	<constant name="struts.action.extension" value=","></constant>  
+    <!-- 上传文件最大限制（如果为多文件上传，则为多个文件的总大小） -->  
+    <constant name="struts.multipart.maxSize" value="40000000"></constant>  
+    <!-- 存放上传文件的临时目录 -->  
+    <!--  <constant name="struts.multipart.saveDir" value="D:\\temp"></constant>    -->
+    
+    
 	<package name="LMS" extends="struts-default">
 		<action name="register" class="regAction">
 			<result name="input">/WebPage/register/register.jsp</result>
@@ -58,21 +64,16 @@
 			<result name="success">/Register.jsp</result> 
 			<result name="error">/Register.jsp</result>
 		</action>
-	</package>
-	
-    <constant name="struts.action.extension" value=","></constant>  
-    <!-- 上传文件最大限制（如果为多文件上传，则为多个文件的总大小） -->  
-    <constant name="struts.multipart.maxSize" value="40000000"></constant>  
-    <!-- 存放上传文件的临时目录 -->  
-    <constant name="struts.multipart.saveDir" value="D:\\temp"></constant>    
-      
-      
-    <package name="upload" namespace="/file" extends="struts-default">  
-        <action name="upLoad" class="uploadAction">  
+		<action name="userInfo" class="userInfoAction">
+			<result name="input">/WebPage/register/login.jsp</result>
+			<result name="success">/Register.jsp</result> 
+			<result name="error">/Register.jsp</result>
+		</action>
+		 <action name="upLoad" class="uploadAction">  
             <result name="success">/Success.jsp</result>  
             <result name="error" >/fail.jsp</result>  
             <result name="input" type ="redirect">/index.jsp</result>  
-            <param name="maximumSize ">100000000</param>  
+            <param name="maximumSize ">100000000</param>
             <param name="allowedTypes">
             	image/bmp,image/png,image/gif,image/jpeg,image/jpg,
        			image/pjpeg ,image/bmp, image/gif, image/x-png
@@ -84,7 +85,9 @@
 			<param name="inputName">fileInput</param>
 			<param name="contentDisposition">attachment;filename="${fileName}"</param>
 		</result>
-</action>  
-    </package>  
+		</action>  
+	</package>
+	
+     
   
 </struts>

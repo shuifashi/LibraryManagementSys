@@ -63,7 +63,7 @@
                             </div>
                         <div class="text-xs-center m-a-1">
                             <small>Don't have an account?</small>
-                            <p class="small"><a href="/LibraryManagementSys/WebPage/register/register.jsp" tabindex="5" class="xs-padding-right-small">Create Your Account</a> or <a href="/LibraryManagementSys/WebPage/adminLogin/adminLogin.jsp" tabindex="5" class="xs-padding-left-small">管理员登陆</a></p>
+                            <p class="small"><a href="/LibraryManagementSys/WebPage/login/login.jsp" tabindex="5" class="xs-padding-right-small">普通用户登陆</a></p>
                         </div>
                     </div>
                 </div>

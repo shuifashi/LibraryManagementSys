@@ -47,5 +47,14 @@ public class UserManagerImpl implements UserManager {
 			return false;
 		}
 	}
+	@Override
+	public User findUser(UserForm userForm) throws HibernateException, InterruptedException {
+		// TODO Auto-generated method stub
+		User user = new User();
+		BeanUtils.copyProperties(userForm, user);
+		String queryString= "from User as u where u.userId="+user.getUserId();
+		User result = (User) dao.getObject(queryString);
+		return result;
+	}
 
 }

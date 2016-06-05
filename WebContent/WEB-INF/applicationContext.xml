@@ -169,9 +169,20 @@
 			<ref bean="bookManager" />
 		</property>
 	</bean>
+	<bean id="userInfoAction" class="com.LMS.ssh.action.userInfoAction">
+		<property name="RecordManager">
+			<ref bean="RecordManager" />
+		</property>
+		<property name="bookManager">
+			<ref bean="bookManager" />
+		</property>
+	</bean>
 	<bean id="delreserveBookAction" class="com.LMS.ssh.action.delReserveAction">
 		<property name="RecordManager">
 			<ref bean="RecordManager" />
+		</property>
+		<property name="bookManager">
+			<ref bean="bookManager" />
 		</property>
 	</bean>
 	<bean id="uploadAction" class="com.LMS.ssh.action.uploadAction">
@@ -179,6 +190,7 @@
 			<ref bean="bookManager" />
 		</property>
 	</bean>
+	
 	<bean id="downloadAction" class="com.LMS.ssh.action.downloadAction"></bean>
 	<!-- more bean definitions go here -->
 

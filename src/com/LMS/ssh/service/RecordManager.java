@@ -12,5 +12,5 @@ public interface RecordManager {
 	public String Borrow(RecordForm recordForm) throws HibernateException, InterruptedException;
 	public String delReserve(RecordForm recordFor) throws HibernateException, InterruptedException;
 	public String delBorrow(RecordForm recordForm) throws HibernateException, InterruptedException;
-	public List<Object> findRecord(RecordForm recordForm) throws HibernateException, InterruptedException;
+	public List<Object> findRecordbyUserId(RecordForm recordForm) throws HibernateException, InterruptedException;
 }

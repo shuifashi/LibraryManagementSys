@@ -35,12 +35,18 @@ public class RecordManagerImpl implements RecordManager{
 		this.userDao = userDao;
 	}
 	@Override
-	public List<Object> findRecord(RecordForm recordForm) throws HibernateException, InterruptedException {
-		Record record = new Record();
-		BeanUtils.copyProperties(recordForm, record);
-		StringBuffer queryString = new StringBuffer("from Record as r where r.userId = '"+record.getUserId()+"'");
-		List<Object> list = this.recordDao.getObjectList(new String(queryString));
-		return list;
+	public List<Object> findRecordbyUserId(RecordForm recordForm) throws HibernateException, InterruptedException {
+		if(recordForm != null && !recordForm.getUserId().equals("")) {
+			Record record = new Record();
+			BeanUtils.copyProperties(recordForm, record);
+			StringBuffer queryString = new StringBuffer("from Record as r where r.userId = '"+record.getUserId()+"' order by r.beginTime");
+			List<Object> list = this.recordDao.getObjectList(new String(queryString));
+			return list;
+		} else {
+			StringBuffer queryString = new StringBuffer("from Record order by r.beginTime");
+			List<Object> list = this.recordDao.getObjectList(new String(queryString));
+			return list;
+		}
 	}
 	@Override
 	public synchronized String Reserve(RecordForm recordForm) throws HibernateException, InterruptedException, ParseException {
@@ -135,7 +141,7 @@ public class RecordManagerImpl implements RecordManager{
 		// TODO Auto-generated method stub
 		Record re = new Record();
 		BeanUtils.copyProperties(recordForm, re);	
-		String statement = new String("from Record as r where r.recordId = '"+ re.getRecordId()+"'");
+		String statement = new String("from Record as r where r.userId = '"+ re.getUserId()+"' and r.bookId = '"+re.getBookId()+"'");
 		Record record = (Record)this.recordDao.getObject(statement);
 		System.out.println(record.getRecordId());
 		statement = new String("from Book as b where b.bookId = '"+record.getBookId()+"'");
