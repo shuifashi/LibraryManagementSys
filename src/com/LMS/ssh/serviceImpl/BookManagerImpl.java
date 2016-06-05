@@ -24,14 +24,62 @@ public class BookManagerImpl implements BookManager{
 		BeanUtils.copyProperties(BookForm, book);
 		dao.saveObject(book);
 	}
-
-	@Override
-	public List<Object> findBook(BookForm bookForm) throws HibernateException, InterruptedException {
+	public Object findBook(BookForm bookForm) throws HibernateException, InterruptedException {
 		Book book = new Book();
 		BeanUtils.copyProperties(bookForm, book);
+		String queryString= "from Book as b where b.bookId = '"+book.getBookId()+"'";
+		Object result= this.dao.getObject(queryString);
+		return result;
+	}
+	@Override
+	public List<Object> normalfindBook(BookForm bookForm) throws HibernateException, InterruptedException {
+		// TODO Auto-generated method stub
+		Book book = new Book();
+		String queryString;
+		BeanUtils.copyProperties(bookForm, book);
 		System.out.println(book.getBookName());
-		System.out.println(book.getAuthor());
-		StringBuffer queryString= new StringBuffer("from Book as b where b.bookName like '%"+book.getBookName()+"%'");
+		if(book.getBookName() != null && !book.getBookName().equals("")) {
+			queryString= "from Book as b where b.bookName like '%"+book.getBookName()+"%'";
+		} else if(book.getAuthor() != null && !book.getAuthor().equals("")){
+			queryString= "from Book as b where b.Author like '%"+book.getAuthor()+"%'";
+		} else if(book.getISBN() != null && !book.getISBN().equals("")){
+			queryString= "from Book as b where b.ISBN = '"+book.getISBN()+"'";
+		} else {
+			return null;
+		}
+		List<Object> result = dao.getObjectList(new String(queryString));
+		//User result2 = (User)dao.getObject(user);
+		//System.out.println(result2.getUsername());
+		return result;
+	}
+	@Override
+	public List<Object> superfindBook(BookForm bookForm) throws HibernateException, InterruptedException {
+		// TODO Auto-generated method stub
+		Book book = new Book();
+		BeanUtils.copyProperties(bookForm, book);
+		StringBuffer queryString= new StringBuffer("from Book as b where ");
+		int flag = 0;
+		if(book.getBookName() != null && !book.getBookName().equals("")) {
+			if(flag == 1)
+				queryString.append("and ");
+			queryString.append("b.bookName like '%"+book.getBookName()+"%' ");
+			flag = 1;
+		} 
+		if(book.getAuthor() != null && !book.getAuthor().equals("")) {
+			if(flag == 1)
+				queryString.append("and ");
+			queryString.append("b.Author like '%"+book.getAuthor()+"%' ");
+			flag = 1;
+		}
+		if(book.getPublisher() != null && !book.getAuthor().equals("")) {
+			if(flag == 1)
+				queryString.append("and ");
+			queryString.append("b.Publisher like '%"+book.getPublisher()+"%' ");
+			flag = 1;
+		}
+		if(flag == 0)
+			return null;
+		System.out.println(queryString);
 		List<Object> result = dao.getObjectList(new String(queryString));
 		//User result2 = (User)dao.getObject(user);
 		//System.out.println(result2.getUsername());

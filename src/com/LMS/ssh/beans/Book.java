@@ -8,6 +8,7 @@ public class Book {
 	private String Author;
 	private String Price;
 	private String Publisher;
+	private String location;
 	private String bookAbstract;
 	private int flag; // 1书籍在馆 2书籍借出还未被预约 3书籍借出且被预约  4图书归还但是被预约
 	public void setBookId(String bookId) {
@@ -51,6 +52,12 @@ public class Book {
 	}
 	public String getPublisher() {
 		return this.Publisher;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getLocation() {
+		return this.location;
 	}
 	public void setBookAbstract(String bookAbstract) {
 		this.bookAbstract = bookAbstract;

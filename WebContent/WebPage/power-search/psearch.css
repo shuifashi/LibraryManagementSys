@@ -40,11 +40,13 @@
     border: none;
     border-radius: 4px;
 }
-/*#submit-button {
-    height: 45px;
-    width: 100px;
+#pearch-submit-button {
+	background-color:white;
+    color: white;
+    height: 40px;
+    width: 160px;
     background-color:#0082e6;
-}*/
+}
 .search-options {
     margin-top:30px;
 
@@ -54,11 +56,16 @@
 
 }
 
-/*#power-search-button {
+#power-search-button {
     background-color:white;
-    color: black
+    color: black;
 
-}*/
+}
+#submit-button {
+    height: 45px;
+    width: 100px;
+    background-color:#0082e6;
+}
 
 #search {
     height: 45px;

@@ -38,6 +38,20 @@ public class delReserveAction extends ActionSupport{
 	}
 	
 	public String execute() throws HibernateException, InterruptedException, ParseException {
+		/*if(record.getBookId() == null || record.getBookId().equals("")) {
+			status = "«Î ‰»ÎbookId!";
+			ActionContext.getContext().put("status",this.status);
+			return ERROR;
+		} else if(record.getUserId() == null || record.getUserId().equals("")){
+			status = "«Î ‰»ÎUserId!";
+			ActionContext.getContext().put("status",this.status);
+			return ERROR;
+		}*/
+		if(record.getRecordId() == null || record.getRecordId().equals("")){
+			status = "«Î ‰»ÎRecordId!";
+			ActionContext.getContext().put("status",this.status);
+			return ERROR;
+		}
 		status = this.RecordManager.delReserve(record);
 		if(status.equals("Success")) {
 			ActionContext.getContext().put("status","Success!");

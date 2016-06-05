@@ -51,7 +51,7 @@
 		<s:textfield name="record.recordId" label="recordid"></s:textfield>
 		<s:submit value="del预约" name = 'yuyue'></s:submit>
 	</s:form>
-	<img src = <% out.print(getServletContext().getRealPath("upload")+"\\1.jpg"); %> width="200" height="150">
+	<img src = <% out.print(getServletContext().getRealPath("upload")+"\\js.png");%> width="200" height="150">
 	<% out.print(getServletContext().getRealPath("upload")); %>
 	<!-- enctype="multipart/form-data"不对字符编码。在使用包含文件上传控件的表单时，必须使用该值。 -->
 	<form action="file/upLoad" method="post" enctype="multipart/form-data">
@@ -61,6 +61,7 @@
 		<br>作者<input name="book.Author">
 		<br>价格<input name="book.Price">
 		<br>出版社<input name="book.Publisher">
+		<br>位置<input name="book.location">
 		<br>摘要<input name="book.bookAbstract">
 		<input name="btnUpload" type="submit" value="上传">
 	</form>
